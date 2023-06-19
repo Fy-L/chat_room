@@ -1,0 +1,11 @@
+ syntax = "proto3"; //版本号
+
+ package job;
+
+ //指定生成go文件位置
+ option go_package = "chat_room/api/job";
+ import "conn/conn.proto";
+
+ service Job {
+    rpc PushMsg(conn.BroadcastRoomReq) returns (conn.BroadcastRoomReply);
+ }

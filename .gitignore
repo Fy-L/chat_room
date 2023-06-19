@@ -1,0 +1,3 @@
+/cmd/conn/log/*
+/cmd/job/log/*
+/cmd/logic/log/*

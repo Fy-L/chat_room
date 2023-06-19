@@ -1,0 +1,23 @@
+ syntax = "proto3"; //版本号
+
+ package logic;
+
+//指定生成go文件位置
+ option go_package = "chat_room/api/logic";
+
+ import "conn/conn.proto";
+
+ message AuthReq {
+    string token = 1;
+ }
+
+ message AuthReply{
+    int32 uid = 1;
+    string nickname = 2;
+    string roomID = 3;
+ }
+
+ service  Logic {
+    rpc Auth(AuthReq) returns (AuthReply);
+    rpc PushMsg(conn.BroadcastRoomReq) returns (conn.BroadcastRoomReply);
+ }

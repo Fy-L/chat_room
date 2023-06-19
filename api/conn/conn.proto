@@ -1,0 +1,56 @@
+ syntax = "proto3"; //版本号
+
+ package conn;
+
+//指定生成go文件位置
+ option go_package = "chat_room/api/conn";
+
+enum PackageType {
+  UNKNOWN = 0; // 未知
+  SIGN_IN = 1; // 登录
+  HEARTBEAT = 2; // 心跳
+  MESSAGE = 3; // 消息投递
+  MEMBERS = 4; //获取在线人数
+}
+
+enum MsgLevel {
+    NORMAL = 0;//普通消息
+    IMPORTANT = 1;//重要消息
+}
+
+message Req {
+    PackageType type = 1;//类型
+    bytes data = 2;
+}
+
+message Reply{
+    PackageType type =1;
+    bytes data = 2;
+}
+
+message Err{
+    int32 code = 1;//错误码 0 代表ok 100需要登录
+    string msg = 2;//错误信息
+}
+
+message SignIn {
+    string token = 1;
+    string roomID = 2;
+}
+
+
+message BroadcastRoomReq {
+    string roomID = 1;
+    MsgLevel msgLv = 2;
+    bytes data = 3;
+}
+
+message BroadcastRoomReply{}
+
+
+service  Conn {
+    // 广播
+    //rpc Broadcast(BroadcastReq) returns (BroadcastReply);
+    // 某个房间广播
+    rpc BroadcastRoom(BroadcastRoomReq) returns (BroadcastRoomReply);
+}

@@ -1,0 +1,26 @@
+[bucket]
+    size = 32           #分多少个bucket
+    conns = 1024        #每个bucket连接的数量
+    room = 1024         #每个bucket的room的数量
+    routineAmount = 32  #每个bucket协程数量
+    routineSize = 1024  #每个协程的size
+
+[websocket]
+    bind = ":8081" #websocket监听地址
+
+# 用于服务发现
+[rpc]
+    prefix = "etcd://chat_room/" #服务发现前缀
+    logicRpcPrefix = "room_logic" #服务名
+    jobRpcPrefix = "room_job"   #服务名
+
+# 用于服务注册
+[srv]
+    srvName = "room_conn" #服务名
+    listenAddr = "127.0.0.1:6000" #服务监听地址
+    ttl = 5 # 心跳时间（秒）
+
+# etcd服务
+[etcd]
+    addrs = ["127.0.0.1:2379"]
+    dialTimeOut = 5

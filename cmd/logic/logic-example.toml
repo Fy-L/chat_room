@@ -1,0 +1,11 @@
+[srv]
+    srvName = "room_logic" #服务名
+    listenAddr = "127.0.0.1:6001" #服务地址
+    ttl = 5 #心跳时间（秒）
+
+[etcd]
+    addrs = ["127.0.0.1:2379"] #etcd地址
+    dialTimeOut = 5 #连接超时时间(秒)
+
+[nsq]
+    addr = "127.0.0.1:4150"
